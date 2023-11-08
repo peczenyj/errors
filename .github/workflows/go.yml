@@ -5,9 +5,9 @@ name: Go
 
 on:
   push:
-    branches: [ "devel" ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ "devel" ]
+    branches: [ "main" ]
 
 jobs:
 
@@ -26,3 +26,7 @@ jobs:
 
     - name: Test
       run: go test -v ./...
+      
+    - name: Update coverage report
+      uses: ncruces/go-coverage-report@main
+      
