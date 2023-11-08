@@ -21,6 +21,14 @@ func ExampleWrap() {
 	// Output: oh noes: whoops
 }
 
+func ExampleWithMessage() {
+	cause := errors.New("whoops")
+	err := errors.WithMessage(cause, "oh noes")
+	fmt.Println(err)
+
+	// Output: oh noes: whoops
+}
+
 func fn() error {
 	e1 := errors.New("error")
 	e2 := errors.Wrap(e1, "inner")
@@ -40,6 +48,14 @@ func ExampleCause() {
 func ExampleWrapf() {
 	cause := errors.New("whoops")
 	err := errors.Wrapf(cause, "oh noes #%d", 2)
+	fmt.Println(err)
+
+	// Output: oh noes #2: whoops
+}
+
+func ExampleWithMessagef() {
+	cause := errors.New("whoops")
+	err := errors.WithMessagef(cause, "oh noes #%d", 2)
 	fmt.Println(err)
 
 	// Output: oh noes #2: whoops
