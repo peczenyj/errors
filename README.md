@@ -1,4 +1,4 @@
-# errors
+# errors [![GoDoc](https://godoc.org/github.com/peczenyj/errors?status.svg)](http://godoc.org/github.com/peczenyj/errors) [![Report card](https://goreportcard.com/badge/github.com/peczenyj/errors)](https://goreportcard.com/report/github.com/peczenyj/errors)
 
 nice replacement for [pkg/errors](https://github.com/pkg/errors)
 
