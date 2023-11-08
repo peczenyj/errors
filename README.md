@@ -2,7 +2,6 @@
 [![GoDoc](https://godoc.org/github.com/peczenyj/errors?status.svg)](http://godoc.org/github.com/peczenyj/errors)
 [![Report card](https://goreportcard.com/badge/github.com/peczenyj/errors)](https://goreportcard.com/report/github.com/peczenyj/errors)
 [![Go](https://github.com/peczenyj/errors/actions/workflows/go.yml/badge.svg)](https://github.com/peczenyj/errors/actions/workflows/go.yml) 
-[![Go Coverage](https://github.com/peczenyj/errors/wiki/coverage.svg)](https://raw.githack.com/wiki/peczeny/errors/coverage.html)
 
 nice replacement for [pkg/errors](https://github.com/pkg/errors)
 
