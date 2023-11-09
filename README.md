@@ -29,3 +29,12 @@ errors.Wrap(err, "message")
 * The `errors` has no `Wrap`
 * The [go-faster/errors](https://github.com/go-faster/errors) demands call `errors.DisableTrace` or build tag `noerrtrace` to disable stack traces.
 
+If you don't need stack traces, this is the right tool for you.
+
+The motivation behind this package is: if you are using [pkg/errors](https://github.com/pkg/errors) or [go-faster/errors](https://github.com/go-faster/errors) should be easier to swich to this package by just change the import (when you can't switch to the standard `errors`).
+
+It means, if your code is already using method such as `Wrap` or `Wrapf`, they are available.
+
+Same for `WithMessage` and `WithMessagef` (however, here it is just an alias to `Wrap` and `Wrapf`).
+
+The useful function `Into` from `go-faster/errors` is also available.
