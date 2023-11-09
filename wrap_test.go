@@ -3,8 +3,9 @@ package errors_test
 import (
 	"testing"
 
-	"github.com/peczenyj/errors"
 	"github.com/stretchr/testify/require"
+
+	"github.com/peczenyj/errors"
 )
 
 func TestWrapFunction(t *testing.T) {
@@ -24,6 +25,8 @@ func TestWrapFunction(t *testing.T) {
 }
 
 func TestWrapfFunction(t *testing.T) {
+	t.Parallel()
+
 	t.Run("errors.Wrapf", func(t *testing.T) {
 		t.Parallel()
 
@@ -57,7 +60,7 @@ func testWrapfFunction(t *testing.T, wrapf func(error, string, ...any) error) {
 	t.Helper()
 	{
 		err := errors.New("foo")
-		err = errors.Wrapf(err, "bar %d", 1)
+		err = wrapf(err, "bar %d", 1)
 
 		require.EqualError(t, err, "bar 1: foo")
 	}
@@ -69,6 +72,8 @@ func testWrapfFunction(t *testing.T, wrapf func(error, string, ...any) error) {
 }
 
 func TestCauseFunction(t *testing.T) {
+	t.Parallel()
+
 	e1 := errors.New("error")
 	e2 := errors.Wrap(e1, "inner")
 	e3 := errors.Wrap(e2, "middle")
@@ -80,23 +85,25 @@ func TestCauseFunction(t *testing.T) {
 	require.Equal(t, e1, errors.Cause(e1))
 }
 
-var _ error = (*causerErr)(nil)
+var _ error = (*causerError)(nil)
 
-type causerErr struct {
+type causerError struct {
 	err error
 }
 
-func (c *causerErr) Error() string {
+func (c *causerError) Error() string {
 	return "caused by: " + c.err.Error()
 }
 
-func (c *causerErr) Cause() error {
+func (c *causerError) Cause() error {
 	return c.err
 }
 
 func TestCauseFunction_causer(t *testing.T) {
+	t.Parallel()
+
 	e1 := errors.New("error")
-	e2 := &causerErr{err: e1}
+	e2 := &causerError{err: e1}
 
 	require.Equal(t, e1, errors.Cause(e2))
 }

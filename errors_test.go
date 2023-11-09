@@ -4,9 +4,10 @@ import (
 	"io"
 	"testing"
 
-	"github.com/peczenyj/errors"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
+
+	"github.com/peczenyj/errors"
 )
 
 func TestNewCtor(t *testing.T) {
@@ -55,27 +56,27 @@ func TestIsFunction(t *testing.T) {
 }
 
 var (
-	_ error = (*customErr)(nil)
-	_ error = (*anotherCustomErr)(nil)
+	_ error = (*customError)(nil)
+	_ error = (*anotherCustomError)(nil)
 )
 
-type customErr struct{}
+type customError struct{}
 
-func (*customErr) Error() string { return "custom error" }
+func (*customError) Error() string { return "custom error" }
 
-func (*customErr) Timeout() bool { return true }
+func (*customError) Timeout() bool { return true }
 
-type anotherCustomErr struct{}
+type anotherCustomError struct{}
 
-func (*anotherCustomErr) Error() string { return "another custom error" }
+func (*anotherCustomError) Error() string { return "another custom error" }
 
 func TestAsFunction(t *testing.T) {
 	t.Parallel()
 
-	err := &customErr{}
+	err := &customError{}
 
 	{
-		var cerr *customErr
+		var cerr *customError
 
 		require.True(t, errors.As(err, &cerr))
 		assert.NotNil(t, cerr)
@@ -90,7 +91,7 @@ func TestAsFunction(t *testing.T) {
 	}
 
 	{
-		var cerr *anotherCustomErr
+		var cerr *anotherCustomError
 
 		require.False(t, errors.As(err, &cerr))
 		assert.Nil(t, cerr)
@@ -100,10 +101,10 @@ func TestAsFunction(t *testing.T) {
 func TestAsFunction_wrappingError(t *testing.T) {
 	t.Parallel()
 
-	err := errors.Errorf("failure: %w", &customErr{})
+	err := errors.Errorf("failure: %w", &customError{})
 
 	{
-		var cerr *customErr
+		var cerr *customError
 
 		require.True(t, errors.As(err, &cerr))
 		assert.NotNil(t, cerr)
@@ -118,7 +119,7 @@ func TestAsFunction_wrappingError(t *testing.T) {
 	}
 
 	{
-		var cerr *anotherCustomErr
+		var cerr *anotherCustomError
 
 		require.False(t, errors.As(err, &cerr))
 		assert.Nil(t, cerr)
@@ -126,6 +127,8 @@ func TestAsFunction_wrappingError(t *testing.T) {
 }
 
 func TestJoinFunction(t *testing.T) {
+	t.Parallel()
+
 	err1 := errors.New("foo")
 	err2 := errors.New("bar")
 	err3 := error(nil)

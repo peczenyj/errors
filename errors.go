@@ -7,13 +7,13 @@ import (
 
 // New returns an error that formats as the given text.
 func New(text string) error {
-	return errors.New(text)
+	return errors.New(text) //nolint: goerr113
 }
 
 // Errorf formats according to a format specifier and returns the string
 // as a value that satisfies error.
 func Errorf(format string, args ...any) error {
-	return fmt.Errorf(format, args...)
+	return fmt.Errorf(format, args...) //nolint: goerr113
 }
 
 // ErrUnsupported indicates that a requested operation cannot be performed,

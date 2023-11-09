@@ -69,7 +69,7 @@ func Cause(err error) error {
 	var causerErr causer
 
 	if errors.As(err, &causerErr) {
-		return causerErr.Cause()
+		return causerErr.Cause() //nolint: wrapcheck
 	}
 
 	cause, next := err, Unwrap(err)
