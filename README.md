@@ -2,6 +2,7 @@
 [![GoDoc](https://godoc.org/github.com/peczenyj/errors?status.svg)](http://godoc.org/github.com/peczenyj/errors)
 [![Go](https://github.com/peczenyj/errors/actions/workflows/go.yml/badge.svg)](https://github.com/peczenyj/errors/actions/workflows/go.yml)
 [![Lint](https://github.com/peczenyj/errors/actions/workflows/lint.yml/badge.svg)](https://github.com/peczenyj/errors/actions/workflows/lint.yml)
+[![CodeQL](https://github.com/peczenyj/errors/actions/workflows/codeql.yml/badge.svg)](https://github.com/peczenyj/errors/actions/workflows/codeql.yml)
 [![Report card](https://goreportcard.com/badge/github.com/peczenyj/errors)](https://goreportcard.com/report/github.com/peczenyj/errors)
 [![codecov](https://codecov.io/gh/peczenyj/errors/graph/badge.svg?token=9y6f3vGgpr)](https://codecov.io/gh/peczenyj/errors)
 
