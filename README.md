@@ -44,3 +44,11 @@ The useful function `Into` from `go-faster/errors` is also available.
 You can keep using standard `errors` and import the `github.com/peczenyj/errors/werrors` to have access to some extra functions such as `Wrap`, `Wrapf`, `WithMessage`, `WithMessagef`, `Cause` and `Into`.
 
 It is a more minimalistic approach.
+
+```bash
+go get github.com/peczenyj/errors/werrors
+```
+
+```go
+werrors.Wrap(err, "message")
+```
