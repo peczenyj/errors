@@ -15,7 +15,22 @@
 *.out
 
 # Dependency directories (remove the comment below to include it)
-# vendor/
+vendor/
 
 # Go workspace file
 go.work
+
+# Ignore coverage files
+.coverage.*
+# Ignore hidden markdown files (uses these for notes etc. i.e. .NOTES.md, .README.md etc.)
+.*.md
+# Ignore CI and release build directory
+/dist
+/build
+/builds
+/tmp
+# Ignore others
+.env
+.cache
+.vscode
+.idea
