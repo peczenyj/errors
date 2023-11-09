@@ -45,19 +45,3 @@ func ExampleCause() {
 	// Output: outer: middle: inner: error
 	// error
 }
-
-func ExampleWrapf() {
-	cause := errors.New("whoops")
-	err := errors.Wrapf(cause, "oh noes #%d", 2)
-	fmt.Println(err)
-
-	// Output: oh noes #2: whoops
-}
-
-func ExampleWithMessagef() {
-	cause := errors.New("whoops")
-	err := errors.WithMessagef(cause, "oh noes #%d", 2)
-	fmt.Println(err)
-
-	// Output: oh noes #2: whoops
-}
