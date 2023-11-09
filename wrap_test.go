@@ -43,32 +43,41 @@ func TestWrapfFunction(t *testing.T) {
 func testWrapFunction(t *testing.T, wrap func(error, string) error) {
 	t.Helper()
 
-	{
+	t.Run("whould wrap a non nil error", func(t *testing.T) {
+		t.Parallel()
+
 		err := errors.New("foo")
 		err = wrap(err, "bar")
 
 		require.EqualError(t, err, "bar: foo")
-	}
+	})
 
-	{
+	t.Run("wrap nil should return nil", func(t *testing.T) {
+		t.Parallel()
+
 		err := wrap(nil, "message")
 		require.NoError(t, err)
-	}
+	})
 }
 
 func testWrapfFunction(t *testing.T, wrapf func(error, string, ...any) error) {
 	t.Helper()
-	{
+
+	t.Run("whould wrap a non nil error", func(t *testing.T) {
+		t.Parallel()
+
 		err := errors.New("foo")
 		err = wrapf(err, "bar %d", 1)
 
 		require.EqualError(t, err, "bar 1: foo")
-	}
+	})
 
-	{
+	t.Run("wrap nil should return nil", func(t *testing.T) {
+		t.Parallel()
+
 		err := errors.Wrapf(nil, "message %d", 1)
 		require.NoError(t, err)
-	}
+	})
 }
 
 func TestCauseFunction(t *testing.T) {

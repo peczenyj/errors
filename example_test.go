@@ -45,3 +45,32 @@ func ExampleCause() {
 	// Output: outer: middle: inner: error
 	// error
 }
+
+type timeoutError struct {
+	err error
+}
+
+func (te *timeoutError) Error() string {
+	return "timeout: " + te.err.Error()
+}
+
+func (te *timeoutError) Timeout() bool {
+	return true
+}
+
+type TimeoutError interface {
+	Timeout() bool
+	error
+}
+
+func ExampleInto() {
+	err := errors.New("ops")
+	err = &timeoutError{err}
+	err = errors.Wrap(err, "unexpected")
+
+	if terr, ok := errors.Into[TimeoutError](err); ok {
+		fmt.Println(terr)
+	}
+
+	// Output: timeout: ops
+}

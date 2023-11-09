@@ -29,20 +29,24 @@ func TestErrorfCtor(t *testing.T) {
 func TestErrorfCtor_wrappingError(t *testing.T) {
 	t.Parallel()
 
-	{
+	t.Run("should wrap once", func(t *testing.T) {
+		t.Parallel()
+
 		err := errors.New("foo")
 		err = errors.Errorf("bar: %w", err)
 
 		require.EqualError(t, err, "bar: foo")
-	}
+	})
 
-	{
+	t.Run("should wrap twice", func(t *testing.T) {
+		t.Parallel()
+
 		err := errors.New("foo")
 		err = errors.Errorf("bar: %w", err)
 		err = errors.Errorf("baz: %w", err)
 
 		require.EqualError(t, err, "baz: bar: foo")
-	}
+	})
 }
 
 func TestIsFunction(t *testing.T) {
@@ -73,57 +77,77 @@ func (*anotherCustomError) Error() string { return "another custom error" }
 func TestAsFunction(t *testing.T) {
 	t.Parallel()
 
-	err := &customError{}
+	t.Run("custom error should return itself", func(t *testing.T) {
+		t.Parallel()
 
-	{
+		err := &customError{}
+
 		var cerr *customError
 
 		require.True(t, errors.As(err, &cerr))
 		assert.NotNil(t, cerr)
-	}
+	})
 
-	{
+	t.Run("custom error should return timeout error", func(t *testing.T) {
+		t.Parallel()
+
+		err := &customError{}
+
 		var terr interface{ Timeout() bool }
 
 		require.True(t, errors.As(err, &terr))
 		require.NotNil(t, terr)
 		assert.True(t, terr.Timeout())
-	}
+	})
 
-	{
+	t.Run("custom error should not return another custom error", func(t *testing.T) {
+		t.Parallel()
+
+		err := &customError{}
+
 		var cerr *anotherCustomError
 
 		require.False(t, errors.As(err, &cerr))
 		assert.Nil(t, cerr)
-	}
+	})
 }
 
 func TestAsFunction_wrappingError(t *testing.T) {
 	t.Parallel()
 
-	err := errors.Errorf("failure: %w", &customError{})
+	t.Run("custom error should convert to itself", func(t *testing.T) {
+		t.Parallel()
 
-	{
+		err := errors.Errorf("failure: %w", &customError{})
+
 		var cerr *customError
 
 		require.True(t, errors.As(err, &cerr))
 		assert.NotNil(t, cerr)
-	}
+	})
 
-	{
+	t.Run("custom error should convert as timeout error", func(t *testing.T) {
+		t.Parallel()
+
+		err := errors.Errorf("failure: %w", &customError{})
+
 		var terr interface{ Timeout() bool }
 
 		require.True(t, errors.As(err, &terr))
 		require.NotNil(t, terr)
 		assert.True(t, terr.Timeout())
-	}
+	})
 
-	{
+	t.Run("custom error should not return another custom error", func(t *testing.T) {
+		t.Parallel()
+
+		err := errors.Errorf("failure: %w", &customError{})
+
 		var cerr *anotherCustomError
 
 		require.False(t, errors.As(err, &cerr))
 		assert.Nil(t, cerr)
-	}
+	})
 }
 
 func TestJoinFunction(t *testing.T) {
