@@ -38,3 +38,9 @@ It means, if your code is already using method such as `Wrap` or `Wrapf`, they a
 Same for `WithMessage` and `WithMessagef` (however, here it is just an alias to `Wrap` and `Wrapf`).
 
 The useful function `Into` from `go-faster/errors` is also available.
+
+### werrors
+
+You can keep using standard `errors` and import the `github.com/peczenyj/errors/werrors` to have access to some extra functions such as `Wrap`, `Wrapf`, `WithMessage`, `WithMessagef`, `Cause` and `Into`.
+
+It is a more minimalistic approach.
