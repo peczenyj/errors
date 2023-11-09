@@ -1,9 +1,10 @@
-package errors
+// werrors is a minimalistic package that providers only
+// Wrap, Wrapf, WithMessage, WithMessagef, Cause and Into functions.
+//
+// This allow use the standard "errors" package for New / Errorf, Is, As, etc.
+package werrors
 
-import (
-	"errors"
-	"fmt"
-)
+import "github.com/peczenyj/errors"
 
 // Wrap returns an error annotating err, it is the equivalent to
 //
@@ -11,11 +12,7 @@ import (
 //
 // If err is nil, Wrap returns nil.
 func Wrap(err error, message string) error {
-	if err != nil {
-		return wrap(err, message)
-	}
-
-	return nil
+	return errors.Wrap(err, message)
 }
 
 // Wrapf returns an formatted error annotating err, it is the equivalent to
@@ -25,25 +22,17 @@ func Wrap(err error, message string) error {
 //
 // If err is nil, Wrapf returns nil.
 func Wrapf(err error, format string, args ...any) error {
-	if err != nil {
-		return wrap(err, fmt.Sprintf(format, args...))
-	}
-
-	return nil
+	return errors.Wrapf(err, format, args...)
 }
 
 // WithMessage is an alias to Wrap.
 func WithMessage(err error, message string) error {
-	return Wrap(err, message)
+	return errors.WithMessage(err, message)
 }
 
 // WithMessagef is an alias to Wrapf.
 func WithMessagef(err error, format string, args ...any) error {
-	return Wrapf(err, format, args...)
-}
-
-func wrap(err error, message string) error {
-	return fmt.Errorf("%s: %w", message, err)
+	return errors.WithMessagef(err, format, args...)
 }
 
 // Cause returns the underlying cause of the error, if possible.
@@ -58,24 +47,12 @@ func wrap(err error, message string) error {
 // find the original error.
 // If the error is nil, nil will be returned without further investigation.
 func Cause(err error) error {
-	if err == nil {
-		return nil
-	}
+	return errors.Cause(err) //nolint: wrapcheck
+}
 
-	type causer interface {
-		Cause() error
-	}
-
-	var causerErr causer
-
-	if errors.As(err, &causerErr) {
-		return causerErr.Cause() //nolint: wrapcheck
-	}
-
-	cause, next := err, Unwrap(err)
-	for next != nil {
-		cause, next = next, Unwrap(next)
-	}
-
-	return cause
+// Into finds the first error in err's chain that matches target type T, and if so, returns it.
+//
+// Into is type-safe alternative to As.
+func Into[T error](err error) (val T, ok bool) { //nolint: ireturn
+	return errors.Into[T](err)
 }

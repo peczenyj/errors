@@ -22,6 +22,7 @@ issues:
         - exhaustruct
         - varnamelen
         - dupword
+        - goerr113
     - path: "mocks.go$"
       linters:
         - protogetter
