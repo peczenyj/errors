@@ -54,9 +54,9 @@ func TestIsFunction(t *testing.T) {
 
 	err := errors.Errorf("failure: %w", io.EOF)
 
-	assert.True(t, errors.Is(io.EOF, io.EOF))            //nolint: testifylint
-	assert.True(t, errors.Is(err, io.EOF))               //nolint: testifylint
-	assert.False(t, errors.Is(err, io.ErrUnexpectedEOF)) //nolint: testifylint
+	assert.True(t, errors.Is(io.EOF, io.EOF))
+	assert.True(t, errors.Is(err, io.EOF))
+	assert.False(t, errors.Is(err, io.ErrUnexpectedEOF))
 }
 
 var (
@@ -84,7 +84,7 @@ func TestAsFunction(t *testing.T) {
 
 		var cerr *customError
 
-		require.True(t, errors.As(err, &cerr)) //nolint: testifylint
+		require.True(t, errors.As(err, &cerr))
 		assert.NotNil(t, cerr)
 	})
 
@@ -95,7 +95,7 @@ func TestAsFunction(t *testing.T) {
 
 		var terr interface{ Timeout() bool }
 
-		require.True(t, errors.As(err, &terr)) //nolint: testifylint
+		require.True(t, errors.As(err, &terr))
 		require.NotNil(t, terr)
 		assert.True(t, terr.Timeout())
 	})
@@ -122,7 +122,7 @@ func TestAsFunction_wrappingError(t *testing.T) {
 
 		var cerr *customError
 
-		require.True(t, errors.As(err, &cerr)) //nolint: testifylint
+		require.True(t, errors.As(err, &cerr))
 		assert.NotNil(t, cerr)
 	})
 
@@ -133,7 +133,7 @@ func TestAsFunction_wrappingError(t *testing.T) {
 
 		var terr interface{ Timeout() bool }
 
-		require.True(t, errors.As(err, &terr)) //nolint: testifylint
+		require.True(t, errors.As(err, &terr))
 		require.NotNil(t, terr)
 		assert.True(t, terr.Timeout())
 	})

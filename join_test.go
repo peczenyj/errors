@@ -1,8 +1,9 @@
 package errors_test
 
 import (
-	"errors"
 	"testing"
+
+	"github.com/peczenyj/errors"
 
 	"github.com/stretchr/testify/require"
 )
