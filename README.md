@@ -1,5 +1,5 @@
 # errors 
-[![GoDoc](https://godoc.org/github.com/peczenyj/errors?status.svg)](http://godoc.org/github.com/peczenyj/errors)
+[![GoDoc](https://pkg.go.dev/badge/github.com/peczenyj/errors)](http://pkg.go.dev/github.com/peczenyj/errors)
 [![Go](https://github.com/peczenyj/errors/actions/workflows/go.yml/badge.svg)](https://github.com/peczenyj/errors/actions/workflows/go.yml)
 [![Lint](https://github.com/peczenyj/errors/actions/workflows/lint.yml/badge.svg)](https://github.com/peczenyj/errors/actions/workflows/lint.yml)
 [![CodeQL](https://github.com/peczenyj/errors/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/peczenyj/errors/actions/workflows/github-code-scanning/codeql)
