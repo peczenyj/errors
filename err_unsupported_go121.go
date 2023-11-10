@@ -7,4 +7,5 @@ import "errors"
 
 // ErrUnsupported indicates that a requested operation cannot be performed,
 // because it is unsupported.
+// requires minimum go 1.21.
 var ErrUnsupported = errors.ErrUnsupported

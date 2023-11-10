@@ -33,8 +33,3 @@ func Is(err, target error) bool {
 func As(err error, target any) bool {
 	return errors.As(err, target)
 }
-
-// Join returns an error that wraps the given errors.
-func Join(errs ...error) error {
-	return errors.Join(errs...)
-}
