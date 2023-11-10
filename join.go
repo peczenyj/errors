@@ -54,9 +54,21 @@ func (e *joinError) Error() string {
 		b = append(b, err.Error()...)
 	}
 	// At this point, b has at least one byte '\n'.
-	return unsafe.String(&b[0], len(b))
+	return b2s(b)
 }
 
 func (e *joinError) Unwrap() []error {
 	return e.errs
+}
+
+// b2s converts byte slice to a string without memory allocation.
+// See https://groups.google.com/forum/#!msg/Golang-Nuts/ENgbUzYvCuU/90yGx7GUAgAJ .
+//
+// Note it may break if string and/or slice header will change
+// in the future go versions.
+//
+// original code copied from
+// https://github.com/valyala/fasthttp/blob/master/b2s_old.go
+func b2s(b []byte) string {
+	return *(*string)(unsafe.Pointer(&b))
 }
