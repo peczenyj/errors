@@ -56,7 +56,7 @@ func TestIsFunction(t *testing.T) {
 
 	assert.True(t, errors.Is(io.EOF, io.EOF))
 	assert.True(t, errors.Is(err, io.EOF))
-	assert.False(t, errors.Is(err, errors.ErrUnsupported))
+	assert.False(t, errors.Is(err, io.ErrUnexpectedEOF))
 }
 
 var (

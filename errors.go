@@ -16,10 +16,6 @@ func Errorf(format string, args ...any) error {
 	return fmt.Errorf(format, args...) //nolint: goerr113
 }
 
-// ErrUnsupported indicates that a requested operation cannot be performed,
-// because it is unsupported.
-var ErrUnsupported = errors.ErrUnsupported
-
 // Unwrap returns the result of calling the Unwrap method on err, if err's
 // type contains an Unwrap method returning error.
 // Otherwise, Unwrap returns nil.
