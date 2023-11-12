@@ -1,4 +1,4 @@
-# errors 
+# errors
 
 [![tag](https://img.shields.io/github/tag/peczenyj/errors.svg)](https://github.com/peczenyj/errors/releases)
 ![Go Version](https://img.shields.io/badge/Go-%3E%3D%201.18-%23007d9c)
@@ -42,6 +42,43 @@ It means, if your code is already using method such as `Wrap` or `Wrapf`, they a
 Same for `WithMessage` and `WithMessagef` (however, here it is just an alias to `Wrap` and `Wrapf`).
 
 The useful function `Into` from `go-faster/errors` is also available.
+
+## Features
+
+| Feature                                         | `errors` | `pkg/errors` | `go-faster/errors` | `peczenyj/errors` |
+|-------------------------------------------------|----------|--------------|--------------------|-------------------|
+| error constructors (`New`, `Errorf`)            | ✔        | ✔            | ✔                  | ✔                 |
+| error causes (`Cause` / `Unwrap`)               |          | ✔            | ✔                  | ✔                 |
+| type safety (`Into`)                            |          |              | ✔                  | ✔                 |
+| `errors.As()`, `errors.Is()`                    | ✔        | ✔            | ✔                  | ✔                 |
+| support stack traces                            |          | ✔            | ✔                  | no, by desing     |
+|
+
+## Motivation
+
+If your project wants to minimize external dependencies and does not need stack traces on every error or failure, this is a acceptable alternative.
+
+When migrating from some `github.com/<your favorite repository>/errors` to the standard lib `errors`, we can see that our code rely on non-standard functions such as `Wrap` or `Wrapf` that demands more changes than just update the import.
+
+However, helper function such as `Wrap` or `Wrapf` are useful, since it highlight the **error** and automatically ignores nil values.
+
+It means we can choose between:
+
+```go
+data, err := io.ReadAll(r)
+if err != nil {
+        return errors.Wrap(err, "read failed") // add context
+}
+...
+```
+
+And a more simple approach:
+
+```go
+data, err := io.ReadAll(r)
+
+return data, errors.Wrap(err, "read failed") // will return nil if err is nil
+```
 
 ### werrors
 
