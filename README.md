@@ -1,11 +1,15 @@
 # errors 
+
+[![tag](https://img.shields.io/github/tag/peczenyj/errors.svg)](https://github.com/peczenyj/errors/releases)
+![Go Version](https://img.shields.io/badge/Go-%3E%3D%201.18-%23007d9c)
 [![GoDoc](https://pkg.go.dev/badge/github.com/peczenyj/errors)](http://pkg.go.dev/github.com/peczenyj/errors)
 [![Go](https://github.com/peczenyj/errors/actions/workflows/go.yml/badge.svg)](https://github.com/peczenyj/errors/actions/workflows/go.yml)
 [![Lint](https://github.com/peczenyj/errors/actions/workflows/lint.yml/badge.svg)](https://github.com/peczenyj/errors/actions/workflows/lint.yml)
+[![codecov](https://codecov.io/gh/peczenyj/errors/graph/badge.svg?token=9y6f3vGgpr)](https://codecov.io/gh/peczenyj/errors)
+[![Report card](https://goreportcard.com/badge/github.com/peczenyj/errors)](https://goreportcard.com/report/github.com/peczenyj/errors)
 [![CodeQL](https://github.com/peczenyj/errors/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/peczenyj/errors/actions/workflows/github-code-scanning/codeql)
 [![Dependency Review](https://github.com/peczenyj/errors/actions/workflows/dependency-review.yml/badge.svg)](https://github.com/peczenyj/errors/actions/workflows/dependency-review.yml)
-[![Report card](https://goreportcard.com/badge/github.com/peczenyj/errors)](https://goreportcard.com/report/github.com/peczenyj/errors)
-[![codecov](https://codecov.io/gh/peczenyj/errors/graph/badge.svg?token=9y6f3vGgpr)](https://codecov.io/gh/peczenyj/errors)
+[![License](https://img.shields.io/github/license/peczenyj/errors)](./LICENSE)
 
 nice replacement for [pkg/errors](https://github.com/pkg/errors)
 
