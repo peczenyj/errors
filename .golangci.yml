@@ -17,12 +17,12 @@ issues:
         - gocognit
         - funlen
         - lll
-        - gomnd
+        - mnd
         - maintidx
         - exhaustruct
         - varnamelen
         - dupword
-        - goerr113
+        - err113
     - path: "mocks.go$"
       linters:
         - protogetter
@@ -70,12 +70,12 @@ linters:
     - gocyclo
     - godot
     - godox
-    - goerr113
+    - err113
     - gofmt
     - gofumpt
     - goheader
     - goimports
-    - gomnd
+    - mnd
     - gomoddirectives
     - gomodguard
     - goprintffuncname
