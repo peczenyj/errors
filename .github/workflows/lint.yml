@@ -25,7 +25,7 @@ jobs:
     - run: go fix ./...
     - run: go vet -all ./...
     - name: Run golangci-lint
-      uses: golangci/golangci-lint-action@v3
+      uses: golangci/golangci-lint-action@v6
       with:
         version: v1.55.0
         args: --max-same-issues 0 --max-issues-per-linter 0 --deadline=600s --fix
