@@ -1,39 +1,4 @@
-max-issues-per-linter: 0
-max-same-issues: 0
-linters-settings:
-  gofumpt:
-    extra-rules: true
-  goimports:
-    local-prefixes: github.com/peczenyj/errors
-  govet:
-    check-shadowing: true
-    enable-all: true
-issues:
-  exclude:
-    - "directive `.+` should be written without leading space as `.+`"
-  exclude-rules:
-    - path: "_test.go$"
-      linters:
-        - gocognit
-        - funlen
-        - lll
-        - mnd
-        - maintidx
-        - exhaustruct
-        - varnamelen
-        - dupword
-        - err113
-    - path: "mocks.go$"
-      linters:
-        - protogetter
-    - path: "_test.go$"
-      text: "fieldalignment: struct ((with .+ pointer bytes)|(of size .+)) could be .+"
-      linters:
-        - govet
-    # Exclude `lll` issues for long lines with `go:generate`.
-    - linters:
-        - lll
-      source: "^//go:generate "
+version: "2"
 linters:
   enable:
     - asasalint
@@ -48,13 +13,12 @@ linters:
     - dupl
     - dupword
     - durationcheck
-    - errcheck
+    - err113
     - errchkjson
     - errname
     - errorlint
     - exhaustive
     - exhaustruct
-    - exportloopref
     - forbidigo
     - forcetypeassert
     - funlen
@@ -69,23 +33,15 @@ linters:
     - gocyclo
     - godot
     - godox
-    - err113
-    - gofmt
-    - gofumpt
     - goheader
-    - goimports
-    - mnd
     - gomoddirectives
     - gomodguard
     - goprintffuncname
     - gosec
-    - gosimple
     - gosmopolitan
-    - govet
     - grouper
     - importas
     - inamedparam
-    - ineffassign
     - interfacebloat
     - ireturn
     - lll
@@ -94,6 +50,7 @@ linters:
     - makezero
     - mirror
     - misspell
+    - mnd
     - musttag
     - nakedret
     - nestif
@@ -115,10 +72,8 @@ linters:
     - sloglint
     - sqlclosecheck
     - staticcheck
-    - stylecheck
     - tagalign
     - tagliatelle
-    - tenv
     - testableexamples
     - testifylint
     - testpackage
@@ -126,11 +81,65 @@ linters:
     - tparallel
     - unconvert
     - unparam
-    - unused
     - usestdlibvars
     - varnamelen
     - wastedassign
     - whitespace
     - wrapcheck
-    - wsl
+    - wsl_v5
     - zerologlint
+  settings:
+    govet:
+      enable-all: true
+  exclusions:
+    generated: lax
+    presets:
+      - comments
+      - common-false-positives
+      - legacy
+      - std-error-handling
+    rules:
+      - linters:
+          - dupword
+          - err113
+          - exhaustruct
+          - funlen
+          - gocognit
+          - lll
+          - maintidx
+          - mnd
+          - varnamelen
+        path: _test.go$
+      - linters:
+          - protogetter
+        path: mocks.go$
+      - linters:
+          - govet
+        path: _test.go$
+        text: 'fieldalignment: struct ((with .+ pointer bytes)|(of size .+)) could be .+'
+      - linters:
+          - lll
+        source: '^//go:generate '
+      - path: (.+)\.go$
+        text: directive `.+` should be written without leading space as `.+`
+    paths:
+      - third_party$
+      - builtin$
+      - examples$
+formatters:
+  enable:
+    - gofmt
+    - gofumpt
+    - goimports
+  settings:
+    gofumpt:
+      extra-rules: true
+    goimports:
+      local-prefixes:
+        - github.com/peczenyj/errors
+  exclusions:
+    generated: lax
+    paths:
+      - third_party$
+      - builtin$
+      - examples$
