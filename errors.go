@@ -7,13 +7,13 @@ import (
 
 // New returns an error that formats as the given text.
 func New(text string) error {
-	return errors.New(text) //nolint: goerr113
+	return errors.New(text) //nolint: err113
 }
 
 // Errorf formats according to a format specifier and returns the string
 // as a value that satisfies error.
 func Errorf(format string, args ...any) error {
-	return fmt.Errorf(format, args...) //nolint: goerr113
+	return fmt.Errorf(format, args...) //nolint: err113
 }
 
 // Unwrap returns the result of calling the Unwrap method on err, if err's
