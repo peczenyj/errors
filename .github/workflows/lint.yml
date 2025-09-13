@@ -12,10 +12,10 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
 
     - name: Set up Go
-      uses: actions/setup-go@v5
+      uses: actions/setup-go@v6
       with:
         go-version: '1.18.x'
         check-latest: true
@@ -25,7 +25,6 @@ jobs:
     - run: go fix ./...
     - run: go vet -all ./...
     - name: Run golangci-lint
-      uses: golangci/golangci-lint-action@v6
+      uses: golangci/golangci-lint-action@v8
       with:
-        version: v1.62.2
-        args: --max-same-issues 0 --max-issues-per-linter 0 --timeout=600s --fix
+        version: v2.4.0

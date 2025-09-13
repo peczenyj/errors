@@ -52,7 +52,6 @@ The useful function `Into` from `go-faster/errors` is also available.
 | type safety (`Into`)                            |          |              | ✔                  | ✔                 |
 | `errors.As()`, `errors.Is()`                    | ✔        | ✔            | ✔                  | ✔                 |
 | support stack traces                            |          | ✔            | ✔                  | no, by desing     |
-|
 
 ## Motivation
 

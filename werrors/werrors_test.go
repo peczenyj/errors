@@ -126,6 +126,7 @@ func TestIntoFunction(t *testing.T) {
 		t.Parallel()
 
 		var err error
+
 		terr, ok := werrors.Into[TimeoutError](err)
 		require.False(t, ok)
 		require.NoError(t, terr)
