@@ -55,8 +55,8 @@ func Join(errs ...error) error {
 	}
 
 	if len(notNilErrs) == 1 {
-		if err, ok := notNilErrs[0].(unwrapper); ok {
-			return err
+		if _, ok := notNilErrs[0].(unwrapper); ok {
+			return notNilErrs[0]
 		}
 	}
 
